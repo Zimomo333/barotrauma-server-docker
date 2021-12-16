@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check that the game is up-to-date
-"${SRVDIR}/steamcmd.sh" "${SRVDIR}/steamcmd.sh" \
+"${STEAMCMDDIR}/steamcmd.sh" "${STEAMCMDDIR}/steamcmd.sh" \
     @ShutdownOnFailedCommand \
     @NoPromptForPassword \
     +login anonymous \
