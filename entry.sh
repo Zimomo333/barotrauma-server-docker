@@ -15,4 +15,4 @@ set -x \
 && ln -s ${SRVDIR}/steamclient.so /home/steam/.steam/sdk64/steamclient.so
 
 # Run the server!
-"${STEAMAPPDIR}"/DedicatedServer
+"${SRVDIR}"/DedicatedServer
