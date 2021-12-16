@@ -1,7 +1,8 @@
 FROM steamcmd/steamcmd:ubuntu-18
 ENV SRVDIR /home/brtm-server
 RUN apt-get update && \
-apt-get install -y wget && \
+apt-get install -y libsdl2-2.0:i386
+RUN apt-get install -y wget && \
 wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
 dpkg -i packages-microsoft-prod.deb && \
 rm packages-microsoft-prod.deb && \
