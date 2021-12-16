@@ -22,23 +22,8 @@ RUN set -x \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Create directory to hold steamclient.so symlink
-RUN set -x \
-  && mkdir -p /home/steam/.steam/sdk64 \
-	&& chown -R steam:steam /home/steam/.steam \
-	&& ln -s ${SRVDIR}/steamclient.so /home/steam/.steam/sdk64/steamclient.so
-
-# Copy custom files for server
-COPY --chown=steam:steam entry.sh ${SRVDIR}/entry.sh
-RUN chmod 755 ${SRVDIR}/entry.sh
-
-USER steam
-
-WORKDIR $SRVDIR
-
-VOLUME $SRVDIR
-
-ENTRYPOINT ${SRVDIR}/entry.sh
+COPY entry.sh /home/entry.sh
+ENTRYPOINT bash /home/entry.sh
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp
