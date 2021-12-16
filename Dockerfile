@@ -1,9 +1,8 @@
-FROM steamcmd/steamcmd:ubuntu-18
+FROM cm2network/steamcmd:root
 ENV SRVDIR /home/brtm-server
 RUN apt-get update && \
-apt-get install -y libsdl2-2.0:i386
-RUN apt-get install -y wget && \
-wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+apt-get install -y wget && \
+wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
 dpkg -i packages-microsoft-prod.deb && \
 rm packages-microsoft-prod.deb && \
 apt-get update && \
@@ -12,8 +11,7 @@ apt-get update && \
 apt-get install -y dotnet-runtime-6.0 && \
 apt-get remove --purge -y wget && \
 apt-get clean autoclean && \
-apt-get autoremove -y && \
-ln -s /root/.steam/steam/steamcmd/linux64/steamclient.so /usr/lib/x86_64-linux-gnu/steamclient.so
+apt-get autoremove -y
 
 COPY entry.sh /home/entry.sh
 ENTRYPOINT bash /home/entry.sh
