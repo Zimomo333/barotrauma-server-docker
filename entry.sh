@@ -1,11 +1,12 @@
 #!/bin/bash
+chown -R steam:steam "${SRVDIR}"
 
 # Check that the game is up-to-date
 "${STEAMCMDDIR}/steamcmd.sh" "${STEAMCMDDIR}/steamcmd.sh" \
     @ShutdownOnFailedCommand \
     @NoPromptForPassword \
     +login anonymous \
-    +force_install_dir ${STEAMAPPDIR} \
+    +force_install_dir ${SRVDIR} \
     +app_update ${STEAMAPPID} \
     +'quit'
 
