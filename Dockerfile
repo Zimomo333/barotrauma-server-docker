@@ -20,6 +20,13 @@ RUN set -x \
 	&& apt-get install -y apt-transport-https \
 	&& apt-get update \
 	&& apt-get install -y dotnet-runtime-3.1 \
+	&& "${STEAMCMDDIR}/steamcmd.sh" \
+			@ShutdownOnFailedCommand \
+			@NoPromptForPassword \
+			+login anonymous \
+			+force_install_dir ${STEAMAPPDIR} \
+			+app_update ${STEAMAPPID} validate \
+			+'quit' \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \
@@ -42,7 +49,7 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 
-ENTRYPOINT ${STEAMAPPDIR}/entry.sh
+ENTRYPOINT entry.sh
 
 # Expose ports
 EXPOSE 27015/tcp 27015/udp
